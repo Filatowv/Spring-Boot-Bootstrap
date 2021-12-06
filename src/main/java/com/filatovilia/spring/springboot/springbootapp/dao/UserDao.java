@@ -1,6 +1,7 @@
 package com.filatovilia.spring.springboot.springbootapp.dao;
 
 import com.filatovilia.spring.springboot.springbootapp.model.User;
+
 import java.util.List;
 
 public interface UserDao {
