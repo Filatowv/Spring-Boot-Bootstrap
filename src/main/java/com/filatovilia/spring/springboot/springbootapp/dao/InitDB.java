@@ -6,7 +6,6 @@ import com.filatovilia.spring.springboot.springbootapp.service.RoleService;
 import com.filatovilia.spring.springboot.springbootapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
@@ -55,12 +54,9 @@ public class InitDB {
         User user2 = new User("Viktor","Viktor");
         user2.setRoles(roleAdminUser);
 
-        User user3 = new User("Ivan","Ivan");
-        user3.setRoles(roleAdminUser);
 
         userService.addUser(user1);
         userService.addUser(user2);
-        userService.addUser(user3);
         userService.addUser(user4);
     }
 }
