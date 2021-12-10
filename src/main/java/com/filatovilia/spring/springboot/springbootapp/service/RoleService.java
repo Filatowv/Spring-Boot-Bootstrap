@@ -1,6 +1,5 @@
 package com.filatovilia.spring.springboot.springbootapp.service;
 
-
 import com.filatovilia.spring.springboot.springbootapp.model.Role;
 import java.util.List;
 

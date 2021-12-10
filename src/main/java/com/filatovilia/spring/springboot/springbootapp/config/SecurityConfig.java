@@ -19,8 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private final UserDetailsService userDetailsService; // сервис, с помощью которого тащим пользователя
-    private final LoginSuccessHandler successHandler; // класс, в котором описана логика перенаправления пользователей по ролям
+    private final UserDetailsService userDetailsService;
+    private final LoginSuccessHandler successHandler;
 
 
     @Autowired
@@ -40,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//
-//        // Отображение кирилицы
+
+        // Отображение кирилицы
 //        CharacterEncodingFilter filter = new CharacterEncodingFilter();
 //        filter.setEncoding("UTF-8");
 //        filter.setForceEncoding(true);

@@ -1,15 +1,12 @@
 package com.filatovilia.spring.springboot.springbootapp.model;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,18 +23,11 @@ import java.util.Objects;
 import java.util.Set;
 
 
-// Для того, чтобы в дальнейшим использовать класс User в Spring Security,
-// он должен реализовывать интерфейс UserDetails.
-// UserDetails можно представить,
-// как адаптер между БД пользователей и
-// тем что требуется Spring Security внутри SecurityContextHolder
-
 
 @Getter
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-@ToString
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -54,7 +44,7 @@ public class User implements UserDetails {
     private String passwordUser;
 
 
-    @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
