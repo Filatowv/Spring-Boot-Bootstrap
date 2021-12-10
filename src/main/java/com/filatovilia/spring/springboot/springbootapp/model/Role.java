@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.Column;
 import javax.persistence.Entity;

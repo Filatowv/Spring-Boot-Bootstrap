@@ -81,14 +81,6 @@ public class UserController {
 		return "edit_user";
 	}
 
-
-//	//запрос редактирования
-//	@PatchMapping("/admin/{id}")
-//	public String update(@ModelAttribute("user") User user) {
-//		userService.updateUser(user);
-//		return "redirect:/admin";
-//	}
-
 	//запрос редактирования
 	@PatchMapping(value = "/admin/{id}")
 	public String updateUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
