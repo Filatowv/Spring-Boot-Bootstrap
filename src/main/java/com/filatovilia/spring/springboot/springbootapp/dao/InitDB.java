@@ -37,7 +37,6 @@ public class InitDB {
         Set<Role> roleAdminUser = new HashSet<>();
 
         roleUser.add(user);
-        roleAdmin.add(admin);
         roleAdminUser.add(user);
         roleAdminUser.add(admin);
 
@@ -45,18 +44,15 @@ public class InitDB {
         roleService.addRole(admin);
 
 
-        User user1 = new User("Roma","Roma");
+        User user1 = new User("USER" ,"USER",30,"user@mail.ru","USER");
         user1.setRoles(roleUser);
 
-        User user4 = new User("Stas","Stas");
-        user4.setRoles(roleAdmin);
-
-        User user2 = new User("Viktor","Viktor");
+        User user2 = new User("ADMIN" ,"ADMIN",34,"admin@mail.ru","ADMIN");
         user2.setRoles(roleAdminUser);
 
 
         userService.addUser(user1);
         userService.addUser(user2);
-        userService.addUser(user4);
+
     }
 }

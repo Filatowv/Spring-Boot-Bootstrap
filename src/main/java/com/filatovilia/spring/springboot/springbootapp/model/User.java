@@ -37,7 +37,16 @@ public class User implements UserDetails {
     private Long id;
 
     @NonNull
-    private String name;
+    private String lastName;
+
+    @NonNull
+    private String firstName;
+
+    @NonNull
+    private Integer age;
+
+    @NonNull
+    private String email;
 
     @NonNull
     private String passwordUser;
@@ -62,7 +71,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getName();
+        return getFirstName();
     }
 
     @Override
@@ -90,15 +99,11 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id)
-                && name.equals(user.name)
-                && passwordUser.equals(user.passwordUser)
-                && Objects.equals(roles, user.roles);
+        return Objects.equals(id, user.id) && lastName.equals(user.lastName) && firstName.equals(user.firstName) && age.equals(user.age) && email.equals(user.email) && passwordUser.equals(user.passwordUser) && Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, passwordUser, roles);
+        return Objects.hash(id, lastName, firstName, age, email, passwordUser, roles);
     }
-
 }
