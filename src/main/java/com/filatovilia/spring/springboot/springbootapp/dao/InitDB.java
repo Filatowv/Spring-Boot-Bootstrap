@@ -43,12 +43,13 @@ public class InitDB {
         roleService.addRole(user);
         roleService.addRole(admin);
 
+        User user1 = new User("admin" ,"ADMIN",34,"admin@mail.ru","ADMIN");
+        user1.setRoles(roleAdminUser);
 
-        User user1 = new User("USER" ,"USER",30,"user@mail.ru","USER");
-        user1.setRoles(roleUser);
+        User user2 = new User("user" ,"USER",30,"user@mail.ru","USER");
+        user2.setRoles(roleUser);
 
-        User user2 = new User("ADMIN" ,"ADMIN",34,"admin@mail.ru","ADMIN");
-        user2.setRoles(roleAdminUser);
+
 
 
         userService.addUser(user1);
