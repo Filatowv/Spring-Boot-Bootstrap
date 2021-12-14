@@ -90,11 +90,36 @@
                                     <td th:text="${user.getEmail()}">Email</td>
                                     <td th:text="${user.getRoles()}">Role</td>
 
-                                    <td><a th:href="@{'/admin/edit/' + ${user.id}}" class="btn btn-info">Edit</a>
-                                    </td>
+                                    <td><a th:href="@{'/admin/edit/' + ${user.id}}" class="btn btn-info">Edit</a></td>
+                                    <!--Кнопка модального окна-->
+                                    <td><!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            Edit
+                                        </button></td>
+                                    <!--Тело модального окна-->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!--                &nbsp;&nbsp;&nbsp;-->
-                                    <td><a th:href="@{'/admin/delete/' + ${user.id}}"
-                                           class="btn btn-danger">Delete</a></td>
+                                    <td><a th:href="@{'/admin/delete/' + ${user.id}}" class="btn btn-danger">Delete</a></td>
 
                                 </tr>
                                 </tbody>
@@ -117,10 +142,8 @@
                                 <h6 class="p-3">Add new User</h6>
 
                                 <div class="row justify-content-center">
-<!--                                    <form class="" method="post" action="#">-->
                                     <form th:action="@{/admin/add}" th:object="${user}" th:method="post">
-                                        <div class="text-center"> <!--выравнивание по с
-                                        <form th:action="@{/admin/add}" th:object="${user}" th:method="post">-->
+                                      <div class="text-center"> <!--  выравнивание по центру -->
 
                                             <div class="form-group">
                                                 <label for="firstName"
