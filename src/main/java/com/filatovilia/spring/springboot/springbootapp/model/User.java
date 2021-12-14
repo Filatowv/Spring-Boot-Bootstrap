@@ -37,10 +37,10 @@ public class User implements UserDetails {
     private Long id;
 
     @NonNull
-    private String lastName;
+    private String firstName;
 
     @NonNull
-    private String firstName;
+    private String lastName;
 
     @NonNull
     private Integer age;

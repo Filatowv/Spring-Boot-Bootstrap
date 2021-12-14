@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -47,6 +48,9 @@ public class UserController {
 	@GetMapping(value = "/admin")
 	public String adminInfoPage(Model model) {
 		model.addAttribute("userList",userService.getAllUsers());
+		model.addAttribute("user",new User());
+		List<Role> listRoles = roleService.getAllRole();
+		model.addAttribute("listRoles",listRoles);
 		return "admin_Info";
 	}
 

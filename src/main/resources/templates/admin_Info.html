@@ -64,119 +64,153 @@
                         <!-- Начало горизонтальной вкладки User table   -->
                         <div class="tab-pane fade show active" id="user_table">
                             <!-- граница -->
-<!--                            <div class="card">-->
-                                <h6>All users</h6>
-                                <table class="table table-striped">
-                                    <thead>
+                            <div class="card">
+                            <h6 class="p-3">All users</h6>
+                            <table class="table table-striped">
+                                <thead>
 
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Age</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                    </thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
 
-                                    <tbody>
-                                    <tr th:each="user : ${userList}">
-                                        <td th:text="${user.getId()}">ID</td>
-                                        <td th:text="${user.getFirstName()}">First Name</td>
-                                        <td th:text="${user.getFirstName()}">Last Name</td>
-                                        <td th:text="${user.getAge()}">Age</td>
-                                        <td th:text="${user.getEmail()}">Email</td>
-                                        <td th:text="${user.getRoles()}">Role</td>
+                                <tbody>
+                                <tr th:each="user : ${userList}">
+                                    <td th:text="${user.getId()}">ID</td>
+                                    <td th:text="${user.getFirstName()}">First Name</td>
+                                    <td th:text="${user.getFirstName()}">Last Name</td>
+                                    <td th:text="${user.getAge()}">Age</td>
+                                    <td th:text="${user.getEmail()}">Email</td>
+                                    <td th:text="${user.getRoles()}">Role</td>
 
-                                        <td><a th:href="@{'/admin/edit/' + ${user.id}}" class="btn btn-info">Edit</a>
-                                        </td>
-                                        <!--                &nbsp;&nbsp;&nbsp;-->
-                                        <td><a th:href="@{'/admin/delete/' + ${user.id}}"
-                                               class="btn btn-danger">Delete</a></td>
+                                    <td><a th:href="@{'/admin/edit/' + ${user.id}}" class="btn btn-info">Edit</a>
+                                    </td>
+                                    <!--                &nbsp;&nbsp;&nbsp;-->
+                                    <td><a th:href="@{'/admin/delete/' + ${user.id}}"
+                                           class="btn btn-danger">Delete</a></td>
 
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>  <!-- Конец горизонтальной вкладки User table   -->
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>  <!-- Конец горизонтальной вкладки User table -->
+                        </div><!--card-->
 
 
-                            <!-- Начало горизонтальной вкладки New User   -->
-                            <div class="tab-pane fade" id="new_user">
-<!--                                Форма создания нового юзера...-->
+                        <!-- Начало горизонтальной вкладки New User -->
+                        <div class="tab-pane fade" id="new_user">
 
-<!--                                <div class="align-content-center">-->
-                                <br>
-                                <div class="content">
-                                    <div class="row justify-content-center">
-                                        <form class="" method="post" action="#">
-<!--                                            <form th:action="@{/admin/add}" th:object="${user}" th:method="post">-->
+
+                            <!--<div class="align-content-center">-->
+
+
+                            <!--Форма создания нового юзера...-->
+                            <div class="content" id="newUser">
+
+                             <div class="card">
+                                <h6 class="p-3">Add new User</h6>
+
+                                <div class="row justify-content-center">
+<!--                                    <form class="" method="post" action="#">-->
+                                    <form th:action="@{/admin/add}" th:object="${user}" th:method="post">
+                                        <div class="text-center"> <!--выравнивание по с
+                                        <form th:action="@{/admin/add}" th:object="${user}" th:method="post">-->
 
                                             <div class="form-group">
-                                                <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                                                <label for="firstName"
+                                                       class="cols-sm-2 control-label font-weight-bold">First name</label>
                                                 <div class="cols-sm-10">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name"/>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                               name="firstName" id="firstName" placeholder="First Name"/>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                                                <label for="last_name" class="cols-sm-2 control-label font-weight-bold">Last
+                                                    name</label>
                                                 <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email"/>
+                                                        <span class="input-group-addon"><i class="fa fa-envelope fa"
+                                                                                           aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                               name="last_name" id="last_name"
+                                                               placeholder="Last Name"/>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="username" class="cols-sm-2 control-label">Username</label>
+                                                <label for="age"
+                                                       class="cols-sm-2 control-label font-weight-bold">Age</label>
                                                 <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username"/>
+                                                        <span class="input-group-addon"><i class="fa fa-users fa"
+                                                                                           aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                               name="age" id="age" placeholder="Age"/>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="password" class="cols-sm-2 control-label">Password</label>
+                                                <label for="email" class="cols-sm-2 control-label font-weight-bold">Email</label>
                                                 <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password"/>
+                                                        <span class="input-group-addon"><i class="fa fa-users fa"
+                                                                                           aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                               name="email" id="email" placeholder="Email"/>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                                                <label for="passwordUser" class="cols-sm-2 control-label font-weight-bold">Password</label>
                                                 <div class="cols-sm-10">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password"/>
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                                                           aria-hidden="true"></i></span>
+                                                        <input type="password" class="form-control form-control-sm"
+                                                               name="passwordUser" id="passwordUser"
+                                                               placeholder="Password"/>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group ">
-                                                <a href="#" target="_blank" type="button" id="button" class="btn btn-danger btn-lg btn-block login-button">Add new user</a>
+                                            <div class="form-group">
+                                                <label>Role</label>
+                                                <select class="form-control form-control-sm" size="2" name="checkBoxRoles">
+                                                    <option>ADMIN</option>
+                                                    <option>USER</option>
+                                                </select>
                                             </div>
 
-                                        </form>
-                                    </div>
+                                            <div class="form-group">
+                                                <tr>
+                                                    <button href="/admin/add" type="submit" class="btn btn-success">Add new user</button>
+                                                </tr>
+                                            </div>
+                                        </div>  <!--выравнивание по середине-->
+                                    </form>
+<!--                                    </form>-->
                                 </div>
-<!--                                </div>-->
+                            </div>
+                            </div>
 
 
-                            </div> <!-- Конец горизонтальной Вкладки New User   -->
+                        </div> <!-- Конец горизонтальной Вкладки New User   -->
 
 
-<!--                        </div>-->
+                        <!--                        </div>-->
                     </div>
                 </div>  <!--конец контейнера с вкладками-->
 
