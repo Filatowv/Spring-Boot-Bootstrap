@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.HashSet;
@@ -46,11 +47,9 @@ public class UserController {
 
 	//список всех пользователей
 	@GetMapping(value = "/admin")
-	public String adminInfoPage(Model model) {
+	public String adminInfoPage(@AuthenticationPrincipal User user,Model model) {
 		model.addAttribute("userList",userService.getAllUsers());
-		model.addAttribute("user",new User());
-		List<Role> listRoles = roleService.getAllRole();
-		model.addAttribute("listRoles",listRoles);
+		model.addAttribute("user",user);
 		return "admin_Info";
 	}
 
@@ -59,7 +58,7 @@ public class UserController {
 	@GetMapping(value = "/admin/new")
 	public String newUser(Model model) {
 		model.addAttribute("user", new User());
-		model.addAttribute("roles", roleService.getAllRole());
+//		model.addAttribute("roles", roleService.getAllRole());
 		return "new_user";
 	}
 
@@ -76,17 +75,8 @@ public class UserController {
 		return "redirect:/admin";
 	}
 
-
-    //форма редактирования
-	@GetMapping("/admin/edit/{id}")
-	public String edit(@PathVariable("id")long id,Model model) {
-		model.addAttribute("userEdit",userService.getUserById(id));
-		model.addAttribute("role",roleService.getAllRole());
-		return "edit_user";
-	}
-
 	//запрос редактирования
-	@PatchMapping(value = "/admin/{id}")
+	@PatchMapping(value = "/admin/edit")
 	public String updateUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
 		Set<Role> roles = new HashSet<>();
 		for (String role : checkBoxRoles) {

@@ -18,9 +18,11 @@
 </head>
 <div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <span class="navbar-text">
-    Отображение email и роль пользователя
-  </span>
+        <span>
+                <span class="navbar-brand font-weight-bold" th:text="${user.getEmail()}"></span>
+                <span class="navbar-brand" th:text="' with roles:'"></span>
+                <span class="navbar-brand" th:each="role : ${user.getRoles()}" th:text="${role}"></span>
+            </span>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -29,6 +31,7 @@
             </ul>
         </div>
     </nav>
+
 </div>
 <br>
 <body>
@@ -93,99 +96,87 @@
 <!--                                        <td>-->
 <!--                                            <a th:href="@{'/admin/edit/' + ${user.id}}" class="btn btn-info">Edit</a>-->
 <!--                                        </td>-->
+                                        <td>
+                                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#edit"
+                                                    th:attr="data-target='#edit'+${user.getId()}">Edit
+                                            </button>
+                                        </td>
 
+                                        <td>
+                                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete"
+                                                    th:attr="data-target='#delete' + ${user.getId()}">Delete
+                                            </button>
+                                        </td>
 
-                                        <!--Модальное окно-->
-                                        <div class="Modal">
-
-<!--                                            th:href="@{'/admin/edit/' + ${user.id}}"-->
-                                            <td> <!--Кнопка модального окна-->
-                                                <button type="button"  class="btn btn-info" data-toggle="modal"
-                                                        data-target="#EditModal">Edit
-                                                </button>
-                                            </td>
-
-                                            <!--Тело модального окна-->
-                                            <div class="modal fade" id="EditModal" tabindex="-1" role="dialog"
-                                                 aria-labelledby="EditModal" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
+                                        <!--Модальное окно Edit-->
+                                            <div class="modal fade" th:id="edit + ${user.getId()}" aria-hidden="true" role="dialog">
+                                                <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <h5 class="modal-title">Edit user</h5>
+                                                            <button type="button" class="close" data-dismiss="modal">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
 
-
+                                                        <!--Тело модального окна Edit-->
                                                         <div class="modal-body">
-
-
-<!--                                                            <Форма Редактирование>-->
-<!--                                                            <form>-->
-                                                                <form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
-
-                                                                <div class="form-group text-center font-weight-bold">
-                                                                    <label>ID
-                                                                        <input type="number" class="form-control form-control-sm"
-                                                                               th:value="${user.getId()}" name="id" readonly>
-                                                                    </label>
-                                                                    <br>
-
-                                                                    <label>First name
-                                                                        <input class="form-control form-control-sm" type="text"
-                                                                               th:value="${user.getFirstName()}" name="firstName">
-                                                                    </label>
-                                                                    <br>
-
-                                                                    <label>Last name
-                                                                        <input type="text" class="form-control form-control-sm"
-                                                                               th:value="${user.getLastName()}" name="lastName" >
-                                                                    </label>
-                                                                    <br>
-
-
-                                                                    <label>Age
-                                                                        <input type="number" class="form-control form-control-sm"
-                                                                               th:value="${user.getAge()}" name="age">
-                                                                    </label>
-                                                                    <br>
-
-                                                                    <label>Email
-                                                                        <input type="email" class="form-control form-control-sm"
-                                                                               th:value="${user.getEmail()}" name="email">
-                                                                    </label>
-                                                                    <br>
-
-                                                                    <label>Password
-                                                                        <input type="password" class="form-control form-control-sm"
-                                                                               th:value="${user.getPasswordUser()}" name="passwordUser">
-                                                                    </label>
-                                                                    <br>
-
-                                                                    <label>Role
-                                                                        <select class="form-control form-control-sm" size="2" name="checkBoxRoles">
-                                                                            <option>ADMIN</option>
-                                                                            <option>USER</option>
-                                                                        </select>
-                                                                    </label>
+                                                            <div style="text-align: center;">
+                                                                <div class="row justify-content-center align-items-center">
+                                                                    <form th:action="@{/admin/edit}" th:object="${user}" th:method="PATCH"
+                                                                          th:id="editForm + ${user.getId()}">
+                                                                        <div class="form-group text-center font-weight-bold">
+                                                                            <label>ID
+                                                                                <input type="number" class="form-control form-control-sm"
+                                                                                       th:value="${user.getId()}" name="id" readonly>
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>First name
+                                                                                <input class="form-control form-control-sm" type="text"
+                                                                                       th:value="${user.getFirstName()}" name="firstName">
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Last name
+                                                                                <input type="text" class="form-control form-control-sm"
+                                                                                       th:value="${user.getLastName()}" name="lastName" >
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Age
+                                                                                <input type="number" class="form-control form-control-sm"
+                                                                                       th:value="${user.getAge()}" name="age">
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Email
+                                                                                <input type="email" class="form-control form-control-sm"
+                                                                                       th:value="${user.getEmail()}" name="email">
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Password
+                                                                                <input type="password" class="form-control form-control-sm"
+                                                                                       th:value="${user.getPasswordUser()}" name="passwordUser">
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Role
+                                                                                <select class="form-control form-control-sm" size="2" name="checkBoxRoles">
+                                                                                    <option>ADMIN</option>
+                                                                                    <option>USER</option>
+                                                                                </select>
+                                                                            </label>
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
-                                                             <!--<div class="text-center">-->
-                                                            <!-- выравнивание по центру -->
-
-                                                            </form>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <!--<td colspan="2"><button type="submit">Edit</button> </td>-->
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Edit</button>
+                                                            <button  type="submit" class="btn btn-primary" th:form="editForm + ${user.getId()}">Edit</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </div><!--Тело модального окна Edit-->
 
-                                        <td><a th:href="@{'/admin/delete/' + ${user.id}}" class="btn btn-danger">Delete</a></td></tr>
+
+
 
                                     </tbody>
                                 </table>
