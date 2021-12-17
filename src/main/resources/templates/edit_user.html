@@ -9,7 +9,7 @@
 <div align="center">
     <h1>Edit User</h1>
     <br />
-    <form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
+    <form th:method="PATCH" th:action="@{/admin/{id}(id=${userEdit.getId()})}" th:object="${userEdit}">
 
         <table border="0" cellpadding="10">
             <tr>

@@ -98,8 +98,9 @@
                                         <!--Модальное окно-->
                                         <div class="Modal">
 
+<!--                                            th:href="@{'/admin/edit/' + ${user.id}}"-->
                                             <td> <!--Кнопка модального окна-->
-                                                <button type="button" th:href="@{'/admin/edit/' + ${user.id}}" class="btn btn-info" data-toggle="modal"
+                                                <button type="button"  class="btn btn-info" data-toggle="modal"
                                                         data-target="#EditModal">Edit
                                                 </button>
                                             </td>
@@ -110,13 +111,13 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Edit
-                                                                user</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
+
+
                                                         <div class="modal-body">
 
 
@@ -184,9 +185,7 @@
                                             </div>
                                         </div>
 
-                                        <td>
-                                            <a th:href="@{'/admin/delete/' + ${user.id}}" class="btn btn-danger">Delete</a></td>
-                                    </tr>
+                                        <td><a th:href="@{'/admin/delete/' + ${user.id}}" class="btn btn-danger">Delete</a></td></tr>
 
                                     </tbody>
                                 </table>
