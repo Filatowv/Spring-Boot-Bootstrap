@@ -175,7 +175,68 @@
                                                 </div>
                                             </div><!--Тело модального окна Edit-->
 
-
+                                        <!--                            Delete                                   -->
+                                        <td>
+                                            <div class="modal fade" th:id="delete + ${user.getId()}" aria-hidden="true" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Delete user</h5>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div style="text-align: center;">
+                                                                <div class="row justify-content-center align-items-center">
+                                                                    <form th:action="@{/admin/delete/{id}(id=${user.getId()})}" th:object="${user}"
+                                                                          th:method="delete" th:id="deleteForm + ${user.getId()}">
+                                                                        <div class="form-group text-center font-weight-bold">
+                                                                            <label >ID
+                                                                                <input type="number" class="form-control form-control-sm"
+                                                                                       th:value="${user.getId()}"  name="id" readonly>
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>First name
+                                                                                <input type="text" class="form-control form-control-sm"
+                                                                                       th:value="${user.getFirstName()}" name="firstName" readonly>
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Last name
+                                                                                <input type="text" class="form-control form-control-sm"
+                                                                                       th:value="${user.getLastName()}"  name="lastName" readonly>
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Age
+                                                                                <input type="number" class="form-control form-control-sm"
+                                                                                       th:value="${user.getAge()}" name="age" readonly>
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Email
+                                                                                <input type="email" class="form-control form-control-sm"
+                                                                                       th:value="${user.getEmail}" name="email" readonly>
+                                                                            </label>
+                                                                            <br>
+                                                                            <label>Role
+                                                                                <select class="form-control form-control-sm" size="2"
+                                                                                        name="checkBoxRoles" readonly>
+                                                                                    <option>ADMIN</option>
+                                                                                    <option>USER</option>
+                                                                                </select>
+                                                                            </label>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger" th:form="deleteForm +${user.getId()}">
+                                                                Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
 
 
                                     </tbody>
