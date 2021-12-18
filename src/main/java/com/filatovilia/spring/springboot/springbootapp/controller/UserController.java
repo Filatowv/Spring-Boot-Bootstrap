@@ -34,34 +34,29 @@ public class UserController {
 	}
 
 
+	@RequestMapping(value = "/login")
+	public String getLoginPage() {
+		return "login";
+	}
+
 	//список пользователя
 	@GetMapping(value = "/user")
 	public String getUserInfo(@AuthenticationPrincipal User user, Model model){
 		model.addAttribute("user", user);
-		model.addAttribute("roles",user.getRoles());
-		return "user_Info";
+		return "user_panel";
 	}
 
 
-	//список всех пользователей
+
 	@GetMapping(value = "/admin")
 	public String adminInfoPage(@AuthenticationPrincipal User user,Model model) {
 		model.addAttribute("userList",userService.getAllUsers());
 		model.addAttribute("user",user);
-		return "admin_Info";
+		return "admin_panel";
 	}
 
 
-	//форма нового пользователя
-	@GetMapping(value = "/admin/new")
-	public String newUser(Model model) {
-		model.addAttribute("user", new User());
-//		model.addAttribute("roles", roleService.getAllRole());
-		return "new_user";
-	}
 
-
-	//список с новым пользователем
 	@PostMapping(value = "/admin/add")
 	private String addUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
 		Set<Role> roles = new HashSet<>();
@@ -73,7 +68,7 @@ public class UserController {
 		return "redirect:/admin";
 	}
 
-	//запрос редактирования
+
 	@PatchMapping(value = "/admin/edit")
 	public String updateUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
 		Set<Role> roles = new HashSet<>();
